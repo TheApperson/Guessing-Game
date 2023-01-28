@@ -2,20 +2,9 @@ from flask import render_template, redirect, url_for, session, request
 from flask_app import app
 from flask import flash
 import random
+from flask_app.models import user
 
 
-@app.route('/')
-def index():
-    return redirect('/guesser')
-
-def build_list(x):
-    result = []
-    for i in range(x+1):
-        if i == 0:
-            pass
-        else:
-            result.append(i)
-    return result
 
 @app.route('/guesser', methods=['GET', 'POST'])
 def guesser():
