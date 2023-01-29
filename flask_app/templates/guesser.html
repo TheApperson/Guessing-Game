@@ -10,14 +10,18 @@
 <body id="container">
     <div>
         <a href="/">Home</a>
+        <p>{{last_guess}} {{last_answer}}</p>
     </div>
     <div id="guess-bar">
         {% if answer %}
-        <p>You have {{turns_left}} guesses!</p>
+        <p>You have {{turns_left}} {{'guess' if turns_left == 1 else 'guesses'}} left.</p>
         <p>Submit an guess between {{guess_min}} and {{guess_max}}:</p>
+        {% elif win %}
+        <p id="guesses">You win! With {{turns_left}} {{'guess' if turns_left == 1 else 'guesses'}} left.</p>
+        <p>The answer was {{last_answer}}.</p>
         {% else %}
-        <p>Play again?</p>
-        <p>Guess a new number between 1 and 1000</p>
+        <p>You lose! :( The answer was {{last_answer}}...</p>
+        <p>Guess a new number between 1 and 1000:</p>
         {% endif %}
         {% with messages = get_flashed_messages(category_filter=['guess']) %}
         <form action="/guesser" method="post" class="guess-form">
@@ -37,15 +41,16 @@
         {% endwith %}
     </div>
     <div class="graph">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+        {% for i in range(1,11) %}
+            {% if win %}
+            <span class="bar" id="barwin"></span>
+            {% elif i <= turns_left %}
+            <span class="bar"></span>
+            {% else %}
+            <span class="bar" id="barnone"></span>
+            {% endif %}
+        {% endfor %}
     </div>
+    <script src="../static/js/myscript.js"></script>
 </body>
 </html>
