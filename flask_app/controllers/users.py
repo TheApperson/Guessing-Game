@@ -4,11 +4,12 @@ from flask import flash
 import random
 from flask_app.models import user
 
-
+@app.route('/')
+def index():
+    return redirect('/guesser', build_list(1000))
 
 @app.route('/guesser', methods=['GET', 'POST'])
 def guesser():
-    build_list(1000)
     if request.method == 'POST':
         last_guess = 0
         last_answer = 0

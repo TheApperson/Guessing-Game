@@ -1,7 +1,3 @@
-@app.route('/')
-def index():
-    return redirect('/guesser')
-
 def build_list(x):
     result = []
     for i in range(x+1):
