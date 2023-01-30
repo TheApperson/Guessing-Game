@@ -2,5 +2,5 @@ from flask_app import app
 from flask_app.controllers import users
 
 if __name__=="__main__":
-    app.run(port=3300,debug=True)
+    app.run(debug=True)
     print('running')
