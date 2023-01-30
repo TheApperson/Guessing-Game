@@ -10,11 +10,11 @@ def index():
 
 @app.route('/guesser', methods=['GET', 'POST'])
 def guesser():
+    last_guess = 0
+    last_answer = 0
+    remaining_guess = 0
+    win = False
     if request.method == 'POST':
-        last_guess = 0
-        last_answer = 0
-        remaining_guess = 0
-        win = False
         guess = request.form['guess']
         if 'answer' not in session:
             session['answer'] = random.randint(1, 1000)
@@ -45,6 +45,5 @@ def guesser():
                 session['turns_left'] -= 1
                 remaining_guess = session['turns_left']
                 session.pop('answer', None)
-        return render_template('guesser.html', answer=session.get('answer'), guess_min=session.get('guess_min'),
-        guess_max=session.get('guess_max'), last_guess = last_guess, win=win, turns_left=session.get('turns_left'), last_answer=last_answer, remaining_guess=remaining_guess)
-    return render_template('guesser.html')
+    return render_template('guesser.html', answer=session.get('answer'), guess_min=session.get('guess_min'),
+    guess_max=session.get('guess_max'), last_guess = last_guess, win=win, turns_left=session.get('turns_left'), last_answer=last_answer, remaining_guess=remaining_guess)

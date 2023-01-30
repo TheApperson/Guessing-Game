@@ -17,7 +17,7 @@
         <p>You have {{turns_left}} {{'guess' if turns_left == 1 else 'guesses'}} left.</p>
         <p>Submit an guess between {{guess_min}} and {{guess_max}}:</p>
         {% elif win %}
-        <p id="guesses">You win! With {{remaining_guess}} {{'guess' if turns_left == 1 else 'guesses'}} left.</p>
+        <p>You win! With {{remaining_guess}} {{'guess' if remaining_guess == 1 else 'guesses'}} left.</p>
         <p>The answer was {{last_answer}}.</p>
         {% else %}
         <p>You lose! :( The answer was {{last_answer}}...</p>
