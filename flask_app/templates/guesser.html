@@ -8,10 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 </head>
 <body id="container">
-    <div>
-        <a href="/">Home</a>
-        <p>{{last_guess}} {{last_answer}}</p>
-    </div>
     <div id="guess-bar">
         {% if answer %}
         <p>You have {{turns_left}} {{'guess' if turns_left == 1 else 'guesses'}} left.</p>

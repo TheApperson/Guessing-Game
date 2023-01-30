@@ -6,7 +6,7 @@ from flask_app.models.game import Game
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return redirect('/guesser')
 
 @app.route('/guesser', methods=['GET', 'POST'])
 def guesser():
