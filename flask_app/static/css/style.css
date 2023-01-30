@@ -70,6 +70,12 @@ input::-webkit-inner-spin-button {
     transition: transform 4s ease-in, background-color 4s ease-in;
 }
 
+.bar:active {
+    transform: scaleY(7.3);
+    background-color:#64ffda;
+    transition: transform 1s ease-out, background-color .5s ease-out;
+}
+
 .bar:hover {
     transform: scaleY(7.3);
     background-color:#64ffda;
@@ -81,6 +87,10 @@ input::-webkit-inner-spin-button {
 }
 
 #barnone:hover {
+    background-color: #495670;
+}
+
+#barnone:active {
     background-color: #495670;
 }
 
