@@ -23,6 +23,7 @@ Flask-Script==2.0.6
 Flask-Session==0.4.0
 Flask-SQLAlchemy==2.3.2
 Flask-SSLify==0.1.5
+flask-talisman==1.0.0
 greenlet==2.0.1
 idna==3.4
 inflect==6.0.2
