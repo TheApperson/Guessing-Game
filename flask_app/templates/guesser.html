@@ -19,6 +19,7 @@
 <meta property="og:type" content="website"/> 
 </head>
 <body id="container">
+    <p>Games Played: {{games_played}}</p>
     <div id="guess-bar">
         {% if answer %}
         <p>You have {{turns_left}} {{'guess' if turns_left == 1 else 'guesses'}} left.</p>

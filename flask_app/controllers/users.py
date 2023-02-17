@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, session, request
 from flask_app import app
 from flask import flash
 import random
-from flask_app.models.game import Game
+from flask_app.models import game
 
 @app.route('/')
 def index():
@@ -13,6 +13,7 @@ def guesser():
     last_guess = 0
     last_answer = 0
     remaining_guess = 0
+    games_played = game.games
     win = False
     if 'answer' not in session:
         session['answer'] = random.randint(1, 1000)
@@ -26,6 +27,7 @@ def guesser():
             last_answer=session['answer']
             session['turns_left'] -= 1
             session.pop('answer', None)
+            game.add_game()
         elif guess == "":
             flash("Enter a guess!","guess")
         elif int(guess) < int(session['guess_min']) or int(guess) > int(session['guess_max']):
@@ -45,5 +47,8 @@ def guesser():
             session['turns_left'] -= 1
             remaining_guess = session['turns_left']
             session.pop('answer', None)
+            game.add_game()
     return render_template('guesser.html', answer=session.get('answer'), guess_min=session.get('guess_min'),
-    guess_max=session.get('guess_max'), last_guess = last_guess, win=win, turns_left=session.get('turns_left'), last_answer=last_answer, remaining_guess=remaining_guess)
+    guess_max=session.get('guess_max'), last_guess = last_guess, win=win, turns_left=session.get('turns_left'), 
+    last_answer=last_answer, remaining_guess=remaining_guess, 
+    games_played=games_played)
