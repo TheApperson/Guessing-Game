@@ -25,9 +25,9 @@ def guesser():
         guess = request.form['guess']
         if int(session['turns_left']) == 1 and int(guess) != int(session['answer']):
             last_answer=session['answer']
+            game.add_game()
             session['turns_left'] -= 1
             session.pop('answer', None)
-            game.add_game()
         elif guess == "":
             flash("Enter a guess!","guess")
         elif int(guess) < int(session['guess_min']) or int(guess) > int(session['guess_max']):
@@ -44,10 +44,10 @@ def guesser():
             last_guess = guess
             win = True
             last_answer=session['answer']
+            game.add_game()
             session['turns_left'] -= 1
             remaining_guess = session['turns_left']
             session.pop('answer', None)
-            game.add_game()
     return render_template('guesser.html', answer=session.get('answer'), guess_min=session.get('guess_min'),
     guess_max=session.get('guess_max'), last_guess = last_guess, win=win, turns_left=session.get('turns_left'), 
     last_answer=last_answer, remaining_guess=remaining_guess, 
