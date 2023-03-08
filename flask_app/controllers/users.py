@@ -4,6 +4,10 @@ from flask import flash
 import random
 from flask_app.models import game
 
+@app.route('/')
+def index():
+    return redirect('/guesser')
+
 @app.route('/guesser', methods=['GET', 'POST'])
 def guesser():
     last_guess = 0
