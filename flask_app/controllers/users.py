@@ -13,7 +13,6 @@ def guesser():
     last_guess = 0
     last_answer = 0
     remaining_guess = 0
-    games_played = game.games
     win = False
     if 'answer' not in session:
         session['answer'] = random.randint(1, 1000)
@@ -50,5 +49,4 @@ def guesser():
             session.pop('answer', None)
     return render_template('guesser.html', answer=session.get('answer'), guess_min=session.get('guess_min'),
     guess_max=session.get('guess_max'), last_guess = last_guess, win=win, turns_left=session.get('turns_left'), 
-    last_answer=last_answer, remaining_guess=remaining_guess, 
-    games_played=games_played)
+    last_answer=last_answer, remaining_guess=remaining_guess)
