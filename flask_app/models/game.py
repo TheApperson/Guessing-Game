@@ -13,6 +13,14 @@ class Game:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO game (name, play_count, high_score, win, loss) VALUES (%(name)s, %(play_count)s, %(high_score)s, %(win)s, %(loss)s);"
+        query = "INSERT INTO games (name, play_count, high_score, win, loss) VALUES (%(name)s, %(play_count)s, %(high_score)s, %(win)s, %(loss)s);"
         user_id = connectToMySQL(cls.db_name).query_db(query, data)
         return user_id
+
+    @classmethod
+    def get_by_id(cls,data):
+        query = "SELECT * FROM games WHERE id = %(id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query,data)
+        if len(results) < 1:
+            return False
+        return cls(results[0])
