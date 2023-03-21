@@ -24,3 +24,8 @@ class Game:
         if len(results) < 1:
             return False
         return cls(results[0])
+
+    @classmethod
+    def delete(cls,data):
+        query = "DELETE * FROM games WHERE id = %(id)s;"
+        return connectToMySQL(cls.db_name).query_db(query,data)
